@@ -1,0 +1,110 @@
+@use '../styles/variables' as *
+@use '../styles/fonts'
+@use '../styles/nav'
+@use '../styles/footer'
+@use '../styles/default'
+
+.main
+  display: flex
+  justify-content: center
+  position: relative
+  min-height: calc(100vh - 111px)
+  background: $minsk
+
+  &__title
+    color: $haiti
+    font-family: 'Noto Serif', serif
+    font-size: 2.4rem
+    margin: 10px 0 20px 0
+
+  a
+    color: $white
+
+.middle-section
+  width: 600px
+
+.definition
+  max-width: 450px
+  grid-template-columns: 40px 410px
+  grid-template-rows: auto 1fr auto
+  grid-template-areas: 'avatar nick' 'avatar bubble' '. date'
+  column-gap: 10px
+  display: grid
+  margin: 15px 0
+  font-family: 'Open Sans', sans-serif
+
+  &__bubble
+    position: relative
+    width: 100%
+    grid-area: bubble
+    border-radius: 10px
+    border-top-left-radius: 0
+    background: $kimberly
+    box-sizing: border-box
+    padding: 10px 15px
+
+  &__title
+    margin: 0
+    font-family: 'Noto Serif', serif
+    font-size: 2rem
+
+  &__avatar
+    border-radius: 50%
+    top: 0
+    height: 40px
+    width: 40px
+    object-fit: cover
+
+    &-container
+      height: fit-content
+      grid-area: avatar
+
+  &__date
+    grid-area: date
+    color: $grey
+
+  &__name
+    color: $white
+    grid-area: nick
+    text-decoration-color: transparent
+    font-size: 1.2rem
+
+    &:hover
+      text-decoration-color: $white
+
+  &__avatar-container:hover + &__name
+    text-decoration: underline
+
+  &__description
+    color: $haiti
+    margin: 10px 0
+    font-family: 'Noto Serif', serif
+
+  &__thumb
+    text-decoration: none
+
+  &__last-row
+    display: flex
+    justify-content: space-between
+
+  &__opinion
+    display: flex
+    align-items: center
+    column-gap: 5px
+
+  &__ratio
+    color: $white
+
+  &__button
+    cursor: pointer
+
+    &-container
+      display: flex
+      column-gap: 5px
+      color: $white
+
+.see-also
+  display: inline-block
+  width: 100%
+  font-family: 'Open Sans', sans-serif
+  text-align: center

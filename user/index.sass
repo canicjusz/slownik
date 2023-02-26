@@ -1,0 +1,56 @@
+@use '../styles/variables' as *
+@use '../styles/fonts'
+@use '../styles/nav'
+@use '../styles/footer'
+@use '../styles/default'
+
+.main
+  display: flex
+  justify-content: center
+  position: relative
+  min-height: calc(100vh - 111px)
+  background: $minsk
+
+  &__title
+    color: $haiti
+    font-family: 'Noto Serif', serif
+    font-size: 2.4rem
+    margin: 10px 0 20px 0
+
+  a
+    color: $white
+
+
+.user
+  margin: 20px 0
+  height: fit-content
+  padding: 10px
+  background: $kimberly
+  border-radius: 10px
+  width: 600px
+  color: $haiti
+  // dodac to we wszystkich chmurkach
+  box-shadow: 0 0  2px #574e74
+
+  &__avatar
+    border-radius: 50%
+    height: 250px
+    width: 250px
+    object-fit: cover
+
+    &-container
+      text-align: center
+
+  &__name
+    margin: 5px 0
+    text-align: center
+    font-family: 'Open Sans', sans-serif
+    color: $haiti
+    font-size: 2rem
+
+  &__date
+    font-family: 'Open Sans', sans-serif
+
+  &__description
+    font-family: 'Open Sans', sans-serif
+    margin: 10px 0

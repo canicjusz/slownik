@@ -1,0 +1,150 @@
+@use 'styles/variables' as *
+@use 'styles/fonts'
+@use 'styles/nav'
+@use 'styles/footer'
+@use 'styles/default'
+
+.main
+  display: flex
+  justify-content: center
+  position: relative
+  min-height: calc(100vh - 111px)
+  background: $minsk
+
+  &__title
+    color: $haiti
+    font-family: 'Noto Serif', serif
+    font-size: 2.4rem
+    margin: 10px 0 20px 0
+
+  a
+    color: $white
+
+.results-section
+  width: 600px
+
+
+.definition
+  max-width: 450px
+  grid-template-columns: 40px 410px
+  grid-template-rows: auto 1fr auto
+  grid-template-areas: 'avatar nick' 'avatar bubble' '. date'
+  column-gap: 10px
+  display: grid
+  margin: 15px 0
+  font-family: 'Open Sans', sans-serif
+
+  &__bubble
+    width: 100%
+    grid-area: bubble
+    border-radius: 10px
+    border-top-left-radius: 0
+    background: $kimberly
+    box-sizing: border-box
+    padding: 10px 15px
+
+  &__title
+    margin: 0
+    font-family: 'Noto Serif', serif
+    font-size: 2rem
+
+  &__avatar
+    border-radius: 50%
+    top: 0
+    height: 40px
+    width: 40px
+    object-fit: cover
+
+    &-container
+      height: fit-content
+      grid-area: avatar
+
+  &__date
+    grid-area: date
+    color: $grey
+
+  &__name
+    color: $white
+    grid-area: nick
+    text-decoration-color: transparent
+    font-size: 1.2rem
+
+    &:hover
+      text-decoration-color: $white
+
+  &__avatar-container:hover + &__name
+    text-decoration: underline
+
+  &__description
+    color: $haiti
+    margin: 10px 0
+    font-family: 'Noto Serif', serif
+
+  &__thumb
+    text-decoration: none
+
+  &__opinion
+    display: flex
+    align-items: center
+    column-gap: 5px
+
+  &__ratio
+    color: $white
+
+.definition--right.definition
+  margin-left: auto
+  margin-right: 0
+  grid-template-columns: 410px 40px
+  grid-template-rows: auto 1fr
+  grid-template-areas: 'nick avatar' 'bubble avatar'
+
+  .definition
+    &__bubble
+      border-top-left-radius: 10px
+      border-top-right-radius: 0
+
+    &__name
+      text-decoration: none
+      text-align: right
+  
+
+.form
+  margin: 0
+
+  &__input, &__textarea
+    box-sizing: border-box
+    margin: 5px 0 10px 0
+    padding: 10px
+    border-radius: 10px
+    background: $minsk
+    border: none
+    outline: none
+    display: block
+    width: 100%
+    font-family: 'Open Sans', sans-serif
+    height: fit-content
+    resize: none
+    overflow-wrap: break-word
+    color: $white
+    cursor: text
+    font-size: 1.2rem
+    max-height: 200px
+
+  &__button
+    color: $white
+    cursor: pointer
+    font-size: 1.2rem
+    font-family: 'Open Sans', sans-serif
+    padding: 10px 15px
+    margin-right: 0
+    display: block
+    margin-left: auto
+    height: 50px
+    background: $indigo
+    border: none
+    border-radius: 50px
+
+  &__label
+    font-size: 1.2rem
+    font-family: 'Open Sans', sans-serif
+    color: $haiti

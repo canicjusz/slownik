@@ -1,0 +1,79 @@
+@use '../styles/variables' as *
+@use '../styles/fonts'
+@use '../styles/nav'
+@use '../styles/footer'
+@use '../styles/default'
+
+.main
+  display: flex
+  justify-content: center
+  position: relative
+  min-height: calc(100vh - 111px)
+  background: $minsk
+
+  &__title
+    color: $haiti
+    font-family: 'Noto Serif', serif
+    font-size: 2.4rem
+    margin: 10px 0 20px 0
+
+  a
+    color: $white
+
+
+.user
+  margin: 20px 0
+  height: fit-content
+  padding: 10px
+  background: $kimberly
+  border-radius: 10px
+  width: 600px
+  color: $haiti
+  // dodac to we wszystkich chmurkach
+  box-shadow: 0 0  2px #574e74
+
+.form
+  margin: 20px 0 0 0
+  border-radius: 10px
+  height: fit-content
+  background: $kimberly
+  box-sizing: border-box
+  padding: 10px 15px
+
+  &__input
+    box-sizing: border-box
+    margin: 5px 0 10px 0
+    padding: 10px
+    border-radius: 10px
+    background: $minsk
+    border: none
+    outline: none
+    display: block
+    width: 100%
+    font-family: 'Open Sans', sans-serif
+    height: fit-content
+    resize: none
+    overflow-wrap: break-word
+    color: $white
+    cursor: text
+    font-size: 1.2rem
+    max-height: 200px
+
+  &__button
+    color: $white
+    cursor: pointer
+    font-size: 1.2rem
+    font-family: 'Open Sans', sans-serif
+    padding: 10px 15px
+    margin-right: 0
+    display: block
+    margin-left: auto
+    height: 50px
+    background: $indigo
+    border: none
+    border-radius: 50px
+
+  &__label
+    font-size: 1.2rem
+    font-family: 'Open Sans', sans-serif
+    color: $haiti
