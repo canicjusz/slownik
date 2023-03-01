@@ -1,7 +1,7 @@
 <?php
 require_once('connect-db.php');
 session_start();
-$keywords = $_GET["q"];
+$keywords = $_GET["q"] ?? '';
 $user_id = $_SESSION['id'] ?? 0;
 $_SESSION['uri'] = $_SERVER['REQUEST_URI'];
 $definitions_query = "SELECT d.id, d.phrase, d.description_shortened, d.creation_date, d.last_edit_date, d.author_id, u.name, u.avatar, 
@@ -87,8 +87,8 @@ $definitions_result = $mysqli->query($definitions_query);
           <form action="add.php" method="post" class="definition__bubble form">
             <label for="" class="form__label">
               Fraza, słowo
-              <input contenteditable="true" class="form__input" type="text" name="phrase" value="<?= $_GET['phrase'] ?>"
-                id="phrase" required placeholder="Fraza, słowo"><?= $keywords ?></input>
+              <input contenteditable="true" class="form__input" type="text" name="phrase" value="<?= $keywords ?>"
+                id="phrase" required placeholder="Fraza, słowo"></input>
             </label>
             <label for="" class="form__label">
               Objaśnienie
@@ -103,7 +103,7 @@ $definitions_result = $mysqli->query($definitions_query);
             <button class="form__button">Dodaj własną definicję!</button>
           </form>
           <span class="definition__avatar-container">
-            <img class="definition__avatar" src="/avatars/<?= $_SESSION["avatar"] ?>" alt="">
+            <img class="definition__avatar" src="avatars/<?= $_SESSION["avatar"] ?>" alt="">
           </span>
           <span class="definition__name">
             <?= $_SESSION["name"] ?>

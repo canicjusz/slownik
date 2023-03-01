@@ -1,6 +1,7 @@
 <?php
 require_once('connect-db.php');
 session_start();
+if(isset($_POST['email'], $_POST['password'])){
 $email = $_POST['email'];
 $password = $_POST['password'];
 if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
@@ -21,6 +22,7 @@ if (isset($email, $password)) {
     exit;
   }
   echo 'nie ma takiego usera';
+}
 }
 ?>
 

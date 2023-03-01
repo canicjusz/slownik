@@ -25,8 +25,8 @@ replace_variable('phrase', $definition->phrase, $edited);
 replace_variable('description', $definition->description, $edited);
 replace_variable('tags', $definition->tags, $edited);
 
-if (!empty($edited['description'])) {
-  $new_description_shortened = substr($new_description, 0, 150);
+if (isset($_POST['description'])) {
+  $new_description_shortened = substr($_POST['description'], 0, 150);
   $edited['description_shortened'] = $new_description_shortened;
 }
 

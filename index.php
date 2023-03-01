@@ -47,8 +47,7 @@ if (!$best_definitions_result = $mysqli->query($best_definitions_query)) {
       <div class="random-section__content definition">
         <div class="definition__bubble">
           <h3 class="definition__title"><a href="definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
-            </h2>
-            <?= $definition->description_shortened ?>
+            </h3>
             <p class="definition__description">
               <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
             </p>

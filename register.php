@@ -1,6 +1,7 @@
 <?php
 require_once('connect-db.php');
 session_start();
+if(isset($_POST['email'], $_POST['password'], $_POST['name'])){
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -15,6 +16,7 @@ if (isset($name, $email, $password)) {
     exit;
   }
   echo $mysqli->error;
+}
 }
 ?>
 

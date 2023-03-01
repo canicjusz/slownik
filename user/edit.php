@@ -41,7 +41,7 @@ if ($result->num_rows == 1) {
 <main>
   <form action="" method="post" enctype="multipart/form-data">
     <div class="form__avatar-container">
-      <img src="/avatars/<?= $user->avatar ?>" class="form__avatar" />
+      <img src="../avatars/<?= $user->avatar ?>" class="form__avatar" />
       <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg, image/gif">
     </div>
     <input type="text" name="name" value="<?= $user->name ?>" required>

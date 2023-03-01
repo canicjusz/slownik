@@ -20,7 +20,7 @@ $user = $result->fetch_object();
 <main class="main">
   <div class="user">
     <div class="user__avatar-container">
-      <img src="/avatars/<?= $user->avatar ?>" alt="" class="user__avatar">
+      <img src="../avatars/<?= $user->avatar ?>" alt="" class="user__avatar">
     </div>
     <h2 class="user__name">
       <?= $user->name ?>
