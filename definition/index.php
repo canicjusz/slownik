@@ -20,7 +20,7 @@ $definition = $definition_result->fetch_object();
 ?>
 
 <head>
-  <link rel="stylesheet" href="/definition/index.css">
+  <link rel="stylesheet" href="../definition/index.css">
 </head>
 
 <?php require_once('../components/nav.php') ?>
@@ -31,14 +31,14 @@ $definition = $definition_result->fetch_object();
       <div class="definition">
         <div class="definition__bubble">
           <h2 class="definition__title">
-            <a href="/definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
+            <a href="?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
           </h2>
           <p class="definition__description">
-            <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
+            <?= $definition->description ?>
           </p>
           <div class="definition__last-row">
             <div class="definition__opinion">
-              <a href="/definition/upvote.php?id=<?= $definition->id ?>" class="definition__thumb">
+              <a href="upvote.php?id=<?= $definition->id ?>" class="definition__thumb">
                 <?php if ($definition->opinion == 1): ?>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                     <path fill="none" d="M0 0h24v24H0z" />
@@ -56,7 +56,7 @@ $definition = $definition_result->fetch_object();
               <span class="definition__ratio" ratio="<?= $definition->ratio ?>">
                 <?= $definition->ratio ?>
               </span>
-              <a href="/definition/downvote.php?id=<?= $definition->id ?>" class="definition__thumb">
+              <a href="downvote.php?id=<?= $definition->id ?>" class="definition__thumb">
                 <?php if ($definition->opinion == -1): ?>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                     <path fill="none" d="M0 0h24v24H0z" />
@@ -74,14 +74,14 @@ $definition = $definition_result->fetch_object();
             </div>
             <?php if (check_adminship() || $definition->owned): ?>
               <div class="definition__button-container">
-                <a class="definition__button" href="/definition/edit.php?id=<?= $definition->id ?>">
+                <a class="definition__button" href="edit.php?id=<?= $definition->id ?>">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
                       d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" />
                   </svg>
                 </a>
-                <a class="definition__button" href="/definition/remove.php?id=<?= $definition->id ?>">
+                <a class="definition__button" href="remove.php?id=<?= $definition->id ?>">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
@@ -92,18 +92,18 @@ $definition = $definition_result->fetch_object();
             <?php endif; ?>
           </div>
         </div>
-        <a class="definition__avatar-container" href="/user/index.php?id=<?= $definition->author_id ?>">
-          <img class="definition__avatar" src="/avatars/<?= $definition->avatar ?>" alt="">
+        <a class="definition__avatar-container" href="../user/index.php?id=<?= $definition->author_id ?>">
+          <img class="definition__avatar" src="../avatars/<?= $definition->avatar ?>" alt="">
         </a>
-        <a class="definition__name" href="/user/index.php?id=<?= $definition->author_id ?>">
+        <a class="definition__name" href="../user/index.php?id=<?= $definition->author_id ?>">
           <?= $definition->name ?>
         </a>
         <small class="definition__date">
-          <?= $definition->last_edit_date == $definition->creation_date ? $definition->creation_date : $definition->creation_date . ', ostatnia zmiana: ' . $definition->last_edit_date ?>
+          <?= $definition->last_edit_date ? $definition->creation_date . ', ostatnia zmiana: ' . $definition->last_edit_date : $definition->creation_date ?>
         </small>
       </div>
     </div>
-    <a class="see-also" href="/results.php?q=<?= $definition->phrase ?>">Zobacz inne, powiązane definicje</a>
+    <a class="see-also" href="../results.php?q=<?= $definition->phrase ?>">Zobacz inne, powiązane definicje</a>
   </div>
 </div>
 

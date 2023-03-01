@@ -1,8 +1,14 @@
+<?php 
+$paths = ['user', 'styles', 'definition', 'components', 'avatars'];
+$uri_exploded = explode('/', $_SERVER['REQUEST_URI']);
+$lastFolder = $uri_exploded[count($uri_exploded)-2];
+$hrefBeginning = in_array($lastFolder, $paths) ? '../' : './';
+?>
 <nav class="nav">
-  <a href="/" class="nav__link-main">
+  <a href="<?= $hrefBeginning ?>" class="nav__link-main">
     <img src="" alt="logo" class="nav__logo">
   </a>
-  <form action="/results.php" method="get" class="nav__form search">
+  <form action="<?= $hrefBeginning ?>results.php" method="get" class="nav__form search">
     <input type="search" id="search-input" name="q" required class="search__input" placeholder="Wyszukiwarka">
     <button class="search__button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
@@ -16,26 +22,26 @@
   <ul class="nav__list">
     <?php if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])): ?>
       <li class="nav__element">
-        <a href="/definition/add.php" class="nav__link">
+        <a href="<?= $hrefBeginning ?>definition/add.php" class="nav__link">
           Dodaj definicję
         </a>
       </li>
       <li class="nav__element">
-        <a href="/user/index.php?id=<?= $_SESSION['id'] ?>" class="nav__link">
+        <a href="<?= $hrefBeginning ?>user/index.php?id=<?= $_SESSION['id'] ?>" class="nav__link">
           Mój profil
         </a>
       </li>
       <li class="nav__element">
-        <a href="/logout.php" class="nav__link">
+        <a href="<?= $hrefBeginning ?>logout.php" class="nav__link">
           Wyloguj się
         </a>
       </li>
     <?php else: ?>
       <li class="nav__element">
-        <a href="/login.php" class="nav__link">Zaloguj się</a>
+        <a href="<?= $hrefBeginning ?>login.php" class="nav__link">Zaloguj się</a>
       </li>
       <li class="nav__element">
-        <a href="/register.php" class="nav__link">Zarejestruj się</a>
+        <a href="<?= $hrefBeginning ?>register.php" class="nav__link">Zarejestruj się</a>
       </li>
     <?php endif; ?>
   </ul>

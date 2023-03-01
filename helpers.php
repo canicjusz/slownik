@@ -1,10 +1,12 @@
 <?php
 function replace_variable($variable, $old, &...$arrays)
 {
-  $new = $_POST[$variable];
-  if (isset($new) && $new != $old) {
-    foreach ($arrays as &$array) {
-      $array[$variable] = $new;
+  if(isset($_POST[$variable])){
+    $new = $_POST[$variable];
+    if (isset($new) && $new != $old) {
+      foreach ($arrays as &$array) {
+        $array[$variable] = $new;
+      }
     }
   }
 }
@@ -27,5 +29,4 @@ function check_adminship()
   }
   return $user_result?->fetch_object()->is_admin ?? 0;
 }
-
 ?>

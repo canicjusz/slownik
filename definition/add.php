@@ -2,23 +2,20 @@
 require_once('../connect-db.php');
 session_start();
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
-  header('Location: /login.php');
+  header('Location: ../login.php');
   exit;
 }
-$new_phrase = $_POST['phrase'];
-$new_description = $_POST['description'];
-$new_tags = $_POST['tags'];
 
-print_r($new_phrase);
-print_r($new_description);
-print_r($new_tags);
-$new_description_shortened = substr($new_description, 0, 150);
-if (isset($new_phrase, $new_description, $new_tags)) {
+if(isset($_POST['phrase'], $_POST['description'], $_POST['tags'])){
+  $new_phrase = $_POST['phrase'];
+  $new_description = $_POST['description'];
+  $new_tags = $_POST['tags'];
+  $new_description_shortened = substr($new_description, 0, 150);
   $user_id = $_SESSION['id'];
   $query = "INSERT INTO definition (phrase, tags, description, description_shortened, author_id) VALUES ('$new_phrase', '$new_tags', '$new_description', '$new_description_shortened', '$user_id')";
   echo $query . $_SESSION['id'];
   if ($mysqli->query($query)) {
-    header("Location: /definition?id=$mysqli->insert_id");
+    header("Location: index.php?id=$mysqli->insert_id");
     exit;
   }
   echo $mysqli->error;
@@ -26,7 +23,7 @@ if (isset($new_phrase, $new_description, $new_tags)) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="/definition/add.css">
+  <link rel="stylesheet" href="../definition/add.css">
 </head>
 
 <?php require_once('../components/nav.php') ?>
@@ -35,7 +32,7 @@ if (isset($new_phrase, $new_description, $new_tags)) {
   <form action="" method="post" class="form">
     <label for="phrase" class="form__label">
       Fraza, słowo:
-      <input type="text" name="phrase" value="<?= $_GET['phrase'] ?>" id="phrase" required
+      <input type="text" name="phrase" value="<?= $_GET['phrase'] ?? '' ?>" id="phrase" required
         placeholder="przykładowa nazwa" class="form__input">
     </label>
     <label for="description" class="form__label">

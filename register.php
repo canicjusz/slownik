@@ -5,13 +5,13 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
-  header('Location: /index.php');
+  header('Location: index.php');
   exit;
 }
 if (isset($name, $email, $password)) {
   $query = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$password')";
   if ($mysqli->query($query)) {
-    header('Location: /login.php');
+    header('Location: login.php');
     exit;
   }
   echo $mysqli->error;

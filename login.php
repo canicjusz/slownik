@@ -4,7 +4,7 @@ session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
 if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
-  header('Location: /index.php');
+  header('Location: index.php');
   exit;
 }
 if (isset($email, $password)) {
@@ -17,7 +17,7 @@ if (isset($email, $password)) {
     $_SESSION['id'] = $user->id;
     $_SESSION['name'] = $user->name;
     $_SESSION['avatar'] = $user->avatar;
-    header('Location: /index.php');
+    header('Location: index.php');
     exit;
   }
   echo 'nie ma takiego usera';

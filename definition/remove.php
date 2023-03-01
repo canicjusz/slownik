@@ -4,7 +4,7 @@ require_once('../helpers.php');
 session_start();
 $query_id = $_GET["id"];
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
-  header("Location: /definition/index.php?id=$query_id");
+  header("Location: index.php?id=$query_id");
   exit;
 }
 $definition_query = "SELECT author_id FROM definition WHERE id = '$query_id'";
@@ -18,5 +18,5 @@ if ($author_id == $_SESSION['id'] || check_adminship()) {
     echo $mysqli->error;
   }
 }
-header("Location: /definition/index.php?id=$query_id");
+header("Location: index.php?id=$query_id");
 ?>

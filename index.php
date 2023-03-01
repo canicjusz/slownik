@@ -46,20 +46,21 @@ if (!$best_definitions_result = $mysqli->query($best_definitions_query)) {
       <h2 class="random-section__title">Randomowa definicja:</h2>
       <div class="random-section__content definition">
         <div class="definition__bubble">
-          <h3 class="definition__title"><a href="/definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
+          <h3 class="definition__title"><a href="definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
             </h2>
+            <?= $definition->description_shortened ?>
             <p class="definition__description">
               <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
             </p>
         </div>
-        <a class="definition__avatar-container" href="/user/index.php?id=<?= $definition->author_id ?>">
-          <img class="definition__avatar" src="/avatars/<?= $definition->avatar ?>" alt="">
+        <a class="definition__avatar-container" href="user/index.php?id=<?= $definition->author_id ?>">
+          <img class="definition__avatar" src="avatars/<?= $definition->avatar ?>" alt="">
         </a>
-        <a class="definition__name" href="/user/index.php?id=<?= $definition->author_id ?>">
+        <a class="definition__name" href="user/index.php?id=<?= $definition->author_id ?>">
           <?= $definition->name ?>
         </a>
         <small class="definition__date">
-          <?= $definition->last_edit_date == $definition->creation_date ? $definition->creation_date : $definition->creation_date . ', ostatnia zmiana: ' . $definition->last_edit_date ?>
+          <?= $definition->last_edit_date ? $definition->creation_date . ', ostatnia zmiana: ' . $definition->last_edit_date : $definition->creation_date ?>
         </small>
       </div>
     </section>
@@ -71,7 +72,7 @@ if (!$best_definitions_result = $mysqli->query($best_definitions_query)) {
       <ol class="new-definition__list">
         <?php while ($new_definition = $new_definitions_result->fetch_object()): ?>
           <li class="new-definition">
-            <a class="new-definition__link" href="/definition?id=<?= $new_definition->id ?>">
+            <a class="new-definition__link" href="definition?id=<?= $new_definition->id ?>">
               <?= $new_definition->phrase ?>
             </a>
             <small class="new-definition__date">
@@ -87,7 +88,7 @@ if (!$best_definitions_result = $mysqli->query($best_definitions_query)) {
       <ol class="edited-definition__list">
         <?php while ($recently_edited = $recently_edited_result->fetch_object()): ?>
           <li class="edited-definition">
-            <a class="edited-definition__link" href="/definition?id=<?= $recently_edited->id ?>">
+            <a class="edited-definition__link" href="definition?id=<?= $recently_edited->id ?>">
               <?= $recently_edited->phrase ?>
             </a>
             <small class="edited-definition__date">
@@ -103,7 +104,7 @@ if (!$best_definitions_result = $mysqli->query($best_definitions_query)) {
       <ol class="best-definition__list">
         <?php while ($best_definition = $best_definitions_result->fetch_object()): ?>
           <li class="best-definition">
-            <a class="best-definition__link" href="/definition?id=<?= $best_definition->id ?>">
+            <a class="best-definition__link" href="definition?id=<?= $best_definition->id ?>">
               <?= $best_definition->phrase ?>
             </a>
             <small class="best-definition__date">

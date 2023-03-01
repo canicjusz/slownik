@@ -4,7 +4,7 @@ require_once('../connect-db.php');
 session_start();
 $query_id = $_GET["id"];
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
-  header("Location: /definition/index.php?id=$query_id");
+  header("Location: index.php?id=$query_id");
   exit;
 }
 
@@ -15,7 +15,7 @@ if (!$definition_result = $mysqli->query($definition_query)) {
 
 $definition = $definition_result->fetch_object();
 if (!($definition->author_id == $_SESSION['id'] || check_adminship())) {
-  header("Location: /definition/index.php?id=$query_id");
+  header("Location: index.php?id=$query_id");
   exit;
 }
 
@@ -35,7 +35,7 @@ if (!empty($edited)) {
   array_walk($edited, 'join_associative');
   $query = "UPDATE definition SET " . implode(',', $edited) . " WHERE id = $query_id";
   if ($mysqli->query($query)) {
-    header("Location: /definition/index.php?id=$query_id");
+    header("Location: index.php?id=$query_id");
     exit;
   }
   echo $mysqli->error;
@@ -45,7 +45,7 @@ if (!empty($edited)) {
 <?php require_once('../components/nav.php') ?>
 
 <head>
-  <link rel="stylesheet" href="/definition/edit.css">
+  <link rel="stylesheet" href="edit.css">
 </head>
 
 <div class="main">
