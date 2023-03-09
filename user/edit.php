@@ -36,13 +36,18 @@ if ($result->num_rows == 1) {
 }
 ?>
 
+<head>
+  <link rel="stylesheet" href="edit.css">
+</head>
+
 <?php require_once('../components/nav.php') ?>
 
-<main>
+<main class="main">
   <form action="" method="post" enctype="multipart/form-data">
     <div class="form__avatar-container">
       <img src="../avatars/<?= $user->avatar ?>" class="form__avatar" />
-      <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg, image/gif">
+      <label class="form__avatar-plus" for="avatar">+</label>
+      <input class="form__avatar-input" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg, image/gif">
     </div>
     <input type="text" name="name" value="<?= $user->name ?>" required>
     <textarea name="description" id="" cols="30" rows="10"><?= $user->description ?></textarea>
