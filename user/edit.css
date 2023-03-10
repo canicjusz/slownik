@@ -121,33 +121,30 @@ svg {
   color: #18122B;
   box-shadow: 0 0 2px #574e74;
 }
-
-.form {
-  margin: 20px 0 0 0;
-  border-radius: 10px;
-  height: -moz-fit-content;
-  height: fit-content;
-  background: #635985;
-  box-sizing: border-box;
-  padding: 10px 15px;
-}
-.form__avatar {
+.user__avatar {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-.form__avatar-input {
+.user__avatar-input {
   display: none;
 }
-.form__avatar-plus {
+.user__avatar-plus {
   height: 30px;
   width: 100%;
   background: #18122B;
-  text-align: center;
-  display: block;
+  color: #fff;
+  opacity: 0.8;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
   bottom: 0;
   position: absolute;
 }
-.form__avatar-container {
+.user__avatar-container {
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
   background: #443C68;
@@ -157,7 +154,21 @@ svg {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.form__input {
+.user__button {
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: "Open Sans", sans-serif;
+  padding: 10px 15px;
+  margin-right: 0;
+  display: block;
+  margin-left: auto;
+  height: 50px;
+  background: #393053;
+  border: none;
+  border-radius: 50px;
+}
+.user__input {
   box-sizing: border-box;
   margin: 5px 0 10px 0;
   padding: 10px;
@@ -176,23 +187,4 @@ svg {
   cursor: text;
   font-size: 1.2rem;
   max-height: 200px;
-}
-.form__button {
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-family: "Open Sans", sans-serif;
-  padding: 10px 15px;
-  margin-right: 0;
-  display: block;
-  margin-left: auto;
-  height: 50px;
-  background: #393053;
-  border: none;
-  border-radius: 50px;
-}
-.form__label {
-  font-size: 1.2rem;
-  font-family: "Open Sans", sans-serif;
-  color: #18122B;
 }/*# sourceMappingURL=edit.css.map */

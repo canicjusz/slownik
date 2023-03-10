@@ -10,7 +10,7 @@ if (!$result = $mysqli->query($query)) {
 if ($result->num_rows == 1) {
   $user = $result->fetch_object();
 
-  if(isset($_POST["avatar"]) || isset($_POST["description"]) || isset($_POST["name"])){
+  if (isset($_POST["avatar"]) || isset($_POST["description"]) || isset($_POST["name"])) {
     $new_avatar = $_FILES["avatar"]["tmp_name"];
     $edited = [];
 
@@ -43,16 +43,24 @@ if ($result->num_rows == 1) {
 <?php require_once('../components/nav.php') ?>
 
 <main class="main">
-  <form action="" method="post" enctype="multipart/form-data">
-    <div class="form__avatar-container">
-      <img src="../avatars/<?= $user->avatar ?>" class="form__avatar" />
-      <label class="form__avatar-plus" for="avatar">+</label>
-      <input class="form__avatar-input" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg, image/gif">
+  <form action="" method="post" enctype="multipart/form-data" class="user">
+    <div class="user__avatar-container">
+      <img src="../avatars/<?= $user->avatar ?>" class="user__avatar" />
+      <label class="user__avatar-plus" for="avatar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+          width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+        </svg></label>
+      <input class="user__avatar-input" type="file" id="avatar" name="avatar"
+        accept="image/png, image/jpeg, image/jpg, image/gif">
     </div>
-    <input type="text" name="name" value="<?= $user->name ?>" required>
-    <textarea name="description" id="" cols="30" rows="10"><?= $user->description ?></textarea>
-    <button>zaakceptuj zmiany</button>
+    <input class="user__input" type="text" name="name" value="<?= $user->name ?>" required placeholder="Nazwa">
+    <textarea class="user__input" name="description" id="" cols="30" rows="10"
+      placeholder="Opis"><?= $user->description ?></textarea>
+    <button class="user__button">Zaakceptuj zmiany</button>
   </form>
 </main>
+
+<script src="edit.js"></script>
 
 <?php require_once('../components/footer.php') ?>
