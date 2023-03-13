@@ -1,0 +1,3 @@
+Options -MultiViews
+RewriteEngine On
+RewriteRule (.*)user/(\d+) $1user/index.php?id=$2
