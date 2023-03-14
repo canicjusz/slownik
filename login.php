@@ -1,18 +1,34 @@
 <?php
 require_once('connect-db.php');
 session_start();
-if(isset($_POST['email'], $_POST['password'])){
-$email = $_POST['email'];
-$password = $_POST['password'];
-if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
-  header('Location: index.php');
-  exit;
+function isEmailInDB($email){
+  global $mysqli;
+  $query = "SELECT * FROM user WHERE email='$email'";
+  if ($result = $mysqli->query($query)) {
+    return $result->num_rows;
+  }
 }
-if (isset($email, $password)) {
+
+if(isset($_POST['email'], $_POST['password'])){
+
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
+    header('Location: index.php');
+    exit;
+  }
+
+  if (!isset($email, $password)) {
+    exit;
+  }
+
   $query = "SELECT id, name, avatar FROM user WHERE email = '$email' AND password = '$password'";
+
   if (!$result = $mysqli->query($query)) {
     echo $mysqli->error;
   }
+
   if ($result->num_rows == 1) {
     $user = $result->fetch_object();
     $_SESSION['id'] = $user->id;
@@ -21,8 +37,11 @@ if (isset($email, $password)) {
     header('Location: index.php');
     exit;
   }
-  echo 'nie ma takiego usera';
-}
+  if(!isEmailInDB($email)){
+    $error_message = 'Użytkownik z tym emailem nie istnieje, zarejestuj się <a href="register.php">tutaj</a>.';
+  }else{
+    $error_message = 'Nieprawidłowe hasło.';
+  }
 }
 ?>
 
@@ -46,6 +65,11 @@ if (isset($email, $password)) {
       Zaloguj się
     </button>
   </form>
+  <?php if(isset($error_message)): ?>
+      <div class="error">
+        <?= $error_message ?>
+      </div>
+    <?php endif; ?>
 </main>
 
 <?php require_once('components/footer.php') ?>
