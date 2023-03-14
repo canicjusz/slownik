@@ -6,7 +6,7 @@ $hrefBeginning = in_array($lastFolder, $paths) ? '../' : './';
 ?>
 <nav class="nav">
   <a href="<?= $hrefBeginning ?>" class="nav__link-main">
-    <img src="" alt="logo" class="nav__logo">
+    <img src="<?= $hrefBeginning ?>logo.png" alt="logo" class="nav__logo">
   </a>
   <form action="<?= $hrefBeginning ?>results.php" method="get" class="nav__form search">
     <input type="search" id="search-input" name="q" required class="search__input" placeholder="Wyszukiwarka">
