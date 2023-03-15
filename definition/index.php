@@ -16,6 +16,11 @@ if (!$definition_result = $mysqli->execute_query($definition_query, [$user_id, $
   echo $mysqli->error;
 }
 
+if(!$definition_result->num_rows){
+  header("Location: ../404.php");
+  exit;
+}
+
 $definition = $definition_result->fetch_object();
 ?>
 

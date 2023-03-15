@@ -1,3 +1,7 @@
 Options -MultiViews
-RewriteEngine On
-RewriteRule (.*)user/(\d+) $1user/index.php?id=$2
+RewriteEngine on
+# RewriteEngine On
+# RewriteRule (.*)user/(\d+) $1user/index.php?id=$2
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule .* 404.php [L]

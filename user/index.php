@@ -7,6 +7,12 @@ $query = "SELECT id, name, avatar, creation_date, description FROM user WHERE id
 if (!$result = $mysqli->execute_query($query, [$_GET['id']])) {
   echo $mysqli->error;
 }
+
+if(!$result->num_rows){
+  header("Location: ../404.php");
+  exit;
+}
+
 $user = $result->fetch_object();
 ?>
 
