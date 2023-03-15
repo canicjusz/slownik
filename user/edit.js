@@ -9,9 +9,9 @@ function changeImg() {
   if (input.files) {
     const file = input.files[0];
     if (file.type.startsWith("image/")) {
+      URL.revokeObjectURL(img.src);
       const newSrc = URL.createObjectURL(file);
-      img.setAttribute("src", newSrc);
-      URL.revokeObjectURL(newSrc);
+      img.src = newSrc;
     } else {
       input.value = "";
       alert("Dodaj zdjęcie, a nie");
