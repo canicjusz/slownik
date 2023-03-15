@@ -8,7 +8,7 @@
   <div>
     <h1>404</h1>
     <h2 class="emoticon">ฅ(=╥ᆽ╥=)</h2>
-    <p>Sorka... taka strona nie istnieje</p>
+    <p>Sorka... taka strona nie istnieje.</p>
   </div>
 </main>
 
