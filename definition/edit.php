@@ -8,8 +8,8 @@ if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
   exit;
 }
 
-$definition_query = "SELECT author_id, phrase, description, tags FROM definition WHERE id = '$query_id'";
-if (!$definition_result = $mysqli->query($definition_query)) {
+$definition_query = "SELECT author_id, phrase, description, tags FROM definition WHERE id = ?";
+if (!$definition_result = $mysqli->execute_query($definition_query, [$query_id])) {
   echo $mysqli->error;
 }
 
@@ -32,9 +32,9 @@ if (isset($_POST['description'])) {
 
 if (!empty($edited)) {
   $edited['last_edit_date'] = date('Y-m-d H:i:s');
-  array_walk($edited, 'join_associative');
-  $query = "UPDATE definition SET " . implode(',', $edited) . " WHERE id = $query_id";
-  if ($mysqli->query($query)) {
+  $columns = implode(',', array_map('addQuestionMarks', array_keys($edited)));
+  $query = "UPDATE definition SET $columns WHERE id = ?";
+  if ($mysqli->execute_query($query, [...array_values($edited), $query_id])) {
     header("Location: index.php?id=$query_id");
     exit;
   }

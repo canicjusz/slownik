@@ -2,9 +2,9 @@
 require_once('../connect-db.php');
 session_start();
 
-$query = "SELECT id, name, avatar, creation_date, description FROM user WHERE id = {$_GET['id']}";
+$query = "SELECT id, name, avatar, creation_date, description FROM user WHERE id = ?";
 
-if (!$result = $mysqli->query($query)) {
+if (!$result = $mysqli->execute_query($query, [$_GET['id']])) {
   echo $mysqli->error;
 }
 $user = $result->fetch_object();

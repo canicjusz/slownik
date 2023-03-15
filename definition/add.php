@@ -12,9 +12,9 @@ if(isset($_POST['phrase'], $_POST['description'], $_POST['tags'])){
   $new_tags = $_POST['tags'];
   $new_description_shortened = substr($new_description, 0, 150);
   $user_id = $_SESSION['id'];
-  $query = "INSERT INTO definition (phrase, tags, description, description_shortened, author_id) VALUES ('$new_phrase', '$new_tags', '$new_description', '$new_description_shortened', '$user_id')";
+  $query = "INSERT INTO definition (phrase, tags, description, description_shortened, author_id) VALUES (?, ?, ?, ?, ?)";
   echo $query . $_SESSION['id'];
-  if ($mysqli->query($query)) {
+  if ($mysqli->execute_query($query, [$new_phrase, $new_tags, $new_description, $new_description_shortened, $user_id])) {
     header("Location: index.php?id=$mysqli->insert_id");
     exit;
   }

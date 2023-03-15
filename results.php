@@ -6,10 +6,10 @@ $user_id = $_SESSION['id'] ?? 0;
 $_SESSION['uri'] = $_SERVER['REQUEST_URI'];
 $definitions_query = "SELECT d.id, d.phrase, d.description_shortened, d.creation_date, d.last_edit_date, d.author_id, u.name, u.avatar, 
 (SELECT IFNULL(SUM(opinion), 0) FROM ratio WHERE definition_id=d.id) as ratio, 
-IF(0 < '$user_id', (SELECT opinion FROM ratio WHERE definition_id=d.id AND user_id='$user_id'), '0') as opinion
-FROM definition as d JOIN user as u ON d.author_id = u.id WHERE MATCH(d.phrase,d.description,d.tags) AGAINST ('$keywords' IN NATURAL LANGUAGE MODE) ORDER BY opinion DESC";
+IF(0 < ?, (SELECT opinion FROM ratio WHERE definition_id=d.id AND user_id=?), '0') as opinion
+FROM definition as d JOIN user as u ON d.author_id = u.id WHERE MATCH(d.phrase,d.description,d.tags) AGAINST (? IN NATURAL LANGUAGE MODE) ORDER BY opinion DESC";
 
-$definitions_result = $mysqli->query($definitions_query);
+$definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $user_id, $keywords]);
 ?>
 
 <head>

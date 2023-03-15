@@ -9,16 +9,16 @@ if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
 
 function isNameInDB($name){
   global $mysqli;
-  $query = "SELECT * FROM user WHERE name='$name'";
-  if ($result = $mysqli->query($query)) {
+  $query = "SELECT * FROM user WHERE name=?";
+  if ($result = $mysqli->execute_query($query, [$name])) {
     return $result->num_rows;
   }
 }
 
 function isEmailInDB($email){
   global $mysqli;
-  $query = "SELECT * FROM user WHERE email='$email'";
-  if ($result = $mysqli->query($query)) {
+  $query = "SELECT * FROM user WHERE email=?";
+  if ($result = $mysqli->execute_query($query, [$email])) {
     return $result->num_rows;
   }
 }
@@ -38,8 +38,8 @@ if(isset($_POST['email'], $_POST['password'], $_POST['name'])){
   $existsEmail = isEmailInDB($email);
 
   if (!($existsName || $existsEmail)) {
-    $query = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$password')";
-    if ($mysqli->query($query)) {
+    $query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+    if ($mysqli->execute_query($query, [$name, $email, $password])) {
       header('Location: login.php');
       exit;
     }

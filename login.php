@@ -3,8 +3,8 @@ require_once('connect-db.php');
 session_start();
 function isEmailInDB($email){
   global $mysqli;
-  $query = "SELECT * FROM user WHERE email='$email'";
-  if ($result = $mysqli->query($query)) {
+  $query = "SELECT * FROM user WHERE email=?";
+  if ($result = $mysqli->execute_query($query, [$email])) {
     return $result->num_rows;
   }
 }
@@ -23,9 +23,9 @@ if(isset($_POST['email'], $_POST['password'])){
     exit;
   }
 
-  $query = "SELECT id, name, avatar FROM user WHERE email = '$email' AND password = '$password'";
+  $query = "SELECT id, name, avatar FROM user WHERE email = '$email' AND password = ?";
 
-  if (!$result = $mysqli->query($query)) {
+  if (!$result = $mysqli->execute_query($query, [$password])) {
     echo $mysqli->error;
   }
 

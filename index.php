@@ -3,29 +3,29 @@ require_once('connect-db.php');
 session_start();
 
 $count_query = 'SELECT COUNT(*) AS count FROM definition';
-if (!$count_result = $mysqli->query($count_query)) {
+if (!$count_result = $mysqli->execute_query($count_query)) {
   echo $mysqli->error;
 }
 $count = $count_result->fetch_object()->count;
 $random_int = rand(1, $count);
 $definition_query = "SELECT * FROM (SELECT d.id, d.phrase, d.description_shortened, d.creation_date, d.last_edit_date, d.author_id, u.name, u.avatar FROM definition as d JOIN user as u ON d.author_id = u.id LIMIT $random_int) as a ORDER BY id DESC LIMIT 1";
-if (!$definition_result = $mysqli->query($definition_query)) {
+if (!$definition_result = $mysqli->execute_query($definition_query)) {
   echo $mysqli->error;
 }
 $definition = $definition_result->fetch_object();
 
 $new_definitions_query = "SELECT id, phrase, creation_date FROM definition ORDER BY creation_date DESC LIMIT 10";
-if (!$new_definitions_result = $mysqli->query($new_definitions_query)) {
+if (!$new_definitions_result = $mysqli->execute_query($new_definitions_query)) {
   echo $mysqli->error;
 }
 
 $recently_edited_query = "SELECT id, phrase, last_edit_date FROM definition WHERE last_edit_date IS NOT NULL ORDER BY last_edit_date DESC LIMIT 10";
-if (!$recently_edited_result = $mysqli->query($recently_edited_query)) {
+if (!$recently_edited_result = $mysqli->execute_query($recently_edited_query)) {
   echo $mysqli->error;
 }
 
 $best_definitions_query = "SELECT d.id, d.phrase, coalesce(SUM(r.opinion),0) AS ratio FROM ratio AS r RIGHT JOIN definition AS d ON r.definition_id=d.id GROUP BY d.id ORDER BY ratio DESC LIMIT 10";
-if (!$best_definitions_result = $mysqli->query($best_definitions_query)) {
+if (!$best_definitions_result = $mysqli->execute_query($best_definitions_query)) {
   echo $mysqli->error;
 }
 ?>

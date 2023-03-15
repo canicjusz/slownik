@@ -2,9 +2,9 @@
 require_once('../connect-db.php');
 require_once('../helpers.php');
 session_start();
-$query = "SELECT id, name, avatar, description FROM user WHERE id = {$_SESSION['id']}";
+$query = "SELECT id, name, avatar, description FROM user WHERE id = ?";
 
-if (!$result = $mysqli->query($query)) {
+if (!$result = $mysqli->execute_query($query, [$_SESSION['id']])) {
   echo $mysqli->error;
 }
 if ($result->num_rows == 1) {
@@ -24,10 +24,9 @@ if ($result->num_rows == 1) {
 
     replace_variable('name', $user->name, $_SESSION, $edited);
     replace_variable('description', $user->name, $_SESSION, $edited);
-
-    array_walk($edited, 'join_associative');
-    $query = "UPDATE user SET " . implode(',', $edited) . " WHERE id = $user->id";
-    if ($mysqli->query($query)) {
+    $columns = implode(',', array_map('addQuestionMarks', array_keys($edited)));
+    $query = "UPDATE user SET $columns WHERE id = ?";
+    if ($mysqli->execute_query($query, [...array_values($edited), $user->id])) {
       header("Location: index.php?id=$user->id");
       exit;
     }

@@ -11,10 +11,8 @@ function replace_variable($variable, $old, &...$arrays)
   }
 }
 
-function join_associative(&$item, $key)
-{
-  $item = $key . "='" . $item . "'";
-  echo $item;
+function addQuestionMarks($key){
+  return $key . '=?';
 }
 
 function check_adminship()
@@ -22,8 +20,8 @@ function check_adminship()
   $user_id = $_SESSION["id"];
   if (isset($user_id)) {
     global $mysqli;
-    $user_query = "SELECT is_admin FROM user WHERE id = '$user_id'";
-    if (!$user_result = $mysqli->query($user_query)) {
+    $user_query = "SELECT is_admin FROM user WHERE id = ?";
+    if (!$user_result = $mysqli->execute_query($user_query, [$user_id])) {
       echo $mysqli->error;
     }
   }

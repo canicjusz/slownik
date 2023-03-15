@@ -8,11 +8,11 @@ $_SESSION['uri'] = $_SERVER['REQUEST_URI'];
 
 $definition_query = "SELECT d.id, d.phrase, d.tags, d.description, d.creation_date, d.last_edit_date, d.author_id, u.name, u.avatar, 
 (SELECT IFNULL(SUM(opinion), 0) FROM ratio WHERE definition_id=d.id) as ratio,
-IF(0 < '$user_id', (SELECT opinion FROM ratio WHERE definition_id=d.id AND user_id='$user_id'), '0') as opinion,
-d.author_id = '$user_id' as owned
-FROM definition as d JOIN user as u ON d.author_id = u.id WHERE d.id = $query_id";
+IF(0 < ?, (SELECT opinion FROM ratio WHERE definition_id=d.id AND user_id=?), '0') as opinion,
+d.author_id = ? as owned
+FROM definition as d JOIN user as u ON d.author_id = u.id WHERE d.id = ?";
 
-if (!$definition_result = $mysqli->query($definition_query)) {
+if (!$definition_result = $mysqli->execute_query($definition_query, [$user_id, $user_id, $user_id, $query_id])) {
   echo $mysqli->error;
 }
 
