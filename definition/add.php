@@ -1,12 +1,12 @@
 <?php
-require_once('../connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
 session_start();
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
   header('Location: ../login.php');
   exit;
 }
 
-if(isset($_POST['phrase'], $_POST['description'], $_POST['tags'])){
+if (isset($_POST['phrase'], $_POST['description'], $_POST['tags'])) {
   $new_phrase = $_POST['phrase'];
   $new_description = $_POST['description'];
   $new_tags = $_POST['tags'];
@@ -26,18 +26,18 @@ if(isset($_POST['phrase'], $_POST['description'], $_POST['tags'])){
   <link rel="stylesheet" href="../definition/add.css">
 </head>
 
-<?php require_once('../components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <div class="main">
   <form action="" method="post" class="form">
     <label for="phrase" class="form__label">
       Fraza, słowo:
-      <input type="text" name="phrase" value="<?= $_GET['phrase'] ?? '' ?>" id="phrase" required
+      <input type="text" name="phrase" value="<?= $_GET['phrase'] ?? '' ?>" id="phrase" require_onced
         placeholder="przykładowa nazwa" class="form__input">
     </label>
     <label for="description" class="form__label">
       Objaśnienie:
-      <textarea name="description" id="description" cols="30" rows="10" required placeholder="ciekawy opis"
+      <textarea name="description" id="description" cols="30" rows="10" require_onced placeholder="ciekawy opis"
         class="form__textarea"></textarea>
     </label>
     <label for="tags" class="form__label">
@@ -48,4 +48,4 @@ if(isset($_POST['phrase'], $_POST['description'], $_POST['tags'])){
   </form>
 </div>
 
-<?php require_once('../components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

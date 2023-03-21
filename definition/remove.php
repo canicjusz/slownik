@@ -1,6 +1,6 @@
 <?php
-require_once('../connect-db.php');
-require_once('../helpers.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
 session_start();
 $query_id = $_GET["id"];
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {

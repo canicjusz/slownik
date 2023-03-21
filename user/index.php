@@ -1,5 +1,5 @@
 <?php
-require_once('../connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
 session_start();
 
 $query = "SELECT id, name, avatar, creation_date, description FROM user WHERE id = ?";
@@ -8,7 +8,7 @@ if (!$result = $mysqli->execute_query($query, [$_GET['id']])) {
   echo $mysqli->error;
 }
 
-if(!$result->num_rows){
+if (!$result->num_rows) {
   header("Location: ../404.php");
   exit;
 }
@@ -20,7 +20,7 @@ $user = $result->fetch_object();
   <link rel="stylesheet" href="index.css">
 </head>
 
-<?php require_once('../components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 <!-- todo: dodac body tagi -->
 <!-- todo: errory -->
 <main class="main">
@@ -49,4 +49,4 @@ $user = $result->fetch_object();
   </div>
 </main>
 
-<?php require_once('../components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

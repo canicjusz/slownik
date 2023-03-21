@@ -1,5 +1,5 @@
 <?php
-require_once('connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
 session_start();
 
 if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
@@ -7,7 +7,8 @@ if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
   exit;
 }
 
-function isNameInDB($name){
+function isNameInDB($name)
+{
   global $mysqli;
   $query = "SELECT * FROM user WHERE name=?";
   if ($result = $mysqli->execute_query($query, [$name])) {
@@ -15,7 +16,8 @@ function isNameInDB($name){
   }
 }
 
-function isEmailInDB($email){
+function isEmailInDB($email)
+{
   global $mysqli;
   $query = "SELECT * FROM user WHERE email=?";
   if ($result = $mysqli->execute_query($query, [$email])) {
@@ -25,32 +27,28 @@ function isEmailInDB($email){
 
 $error_message = '';
 
-if(isset($_POST['email'], $_POST['password'], $_POST['name'])){
+if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  if (!isset($name, $email, $password)){
-    exit;
-  }
-  
   $existsName = isNameInDB($name);
   $existsEmail = isEmailInDB($email);
 
   if (!($existsName || $existsEmail)) {
     $query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
-    if ($mysqli->execute_query($query, [$name, $email, $password])) {
+    if ($mysqli->execute_query($query, [$name, $email, password_hash($password, PASSWORD_BCRYPT)])) {
       header('Location: login.php');
       exit;
     }
   }
-  
-  if($existsName){
+
+  if ($existsName) {
     $error_message .= 'Ta nazwa użytkownika jest już zajęta.';
   }
-  
-  if($existsEmail){
-    if($error_message != ''){
+
+  if ($existsEmail) {
+    if ($error_message != '') {
       $error_message .= '<br>';
     }
     $error_message .= 'Ten email jest już w użyciu, zaloguj się <a href="login.php">tutaj</a>.';
@@ -62,34 +60,34 @@ if(isset($_POST['email'], $_POST['password'], $_POST['name'])){
   <link rel="stylesheet" href="login.css">
 </head>
 
-<?php require_once('components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <main class="main">
   <form action="" method="post" class="form">
     <label for="name" class="form__label">
       Nick:
-      <input type="text" name="name" id="name" class="form__input" required>
+      <input type="text" name="name" id="name" class="form__input" require_onced>
     </label>
     <label for="email" class="form__label">
       Email:
-      <input type="email" name="email" id="email" class="form__input" required>
+      <input type="email" name="email" id="email" class="form__input" require_onced>
     </label>
     <label for="password" class="form__label">
       Hasło:
-      <input type="password" name="password" id="password" class="form__input" required>
+      <input type="password" name="password" id="password" class="form__input" require_onced>
     </label>
     <button class="form__button">
       Zarejestruj się
     </button>
   </form>
-    <?php if($error_message != ''): ?>
-      <div class="error">
-        <?= $error_message ?>
-      </div>
-    <?php endif; ?>
+  <?php if ($error_message != ''): ?>
+    <div class="error">
+      <?= $error_message ?>
+    </div>
+  <?php endif; ?>
   <div>
-    
+
   </div>
 </main>
 
-<?php require_once('components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

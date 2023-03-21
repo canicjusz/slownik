@@ -1,5 +1,5 @@
 <?php
-require_once('connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
 session_start();
 
 $count_query = 'SELECT COUNT(*) AS count FROM definition';
@@ -34,7 +34,7 @@ if (!$best_definitions_result = $mysqli->execute_query($best_definitions_query))
   <link rel="stylesheet" href="index.css">
 </head>
 
-<?php require_once('components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <main class="main">
   <div>
@@ -47,10 +47,10 @@ if (!$best_definitions_result = $mysqli->execute_query($best_definitions_query))
       <div class="random-section__content definition">
         <div class="definition__bubble">
           <h3 class="definition__title"><a href="definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
-            </h3>
-            <p class="definition__description">
-              <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
-            </p>
+          </h3>
+          <p class="definition__description">
+            <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
+          </p>
         </div>
         <a class="definition__avatar-container" href="user/index.php?id=<?= $definition->author_id ?>">
           <img class="definition__avatar" src="avatars/<?= $definition->avatar ?>" alt="">
@@ -116,4 +116,4 @@ if (!$best_definitions_result = $mysqli->execute_query($best_definitions_query))
   </div>
 </main>
 
-<?php require_once('components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

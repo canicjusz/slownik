@@ -1,7 +1,7 @@
 <?php
 function replace_variable($variable, $old, &...$arrays)
 {
-  if(isset($_POST[$variable])){
+  if (isset($_POST[$variable])) {
     $new = $_POST[$variable];
     if (isset($new) && $new != $old) {
       foreach ($arrays as &$array) {
@@ -11,10 +11,10 @@ function replace_variable($variable, $old, &...$arrays)
   }
 }
 
-function addQuestionMarks($key){
+function addQuestionMarks($key)
+{
   return $key . '=?';
 }
-
 function check_adminship()
 {
   $user_id = $_SESSION["id"];
@@ -26,5 +26,11 @@ function check_adminship()
     }
   }
   return $user_result?->fetch_object()->is_admin ?? 0;
+}
+
+function commencing_path()
+{
+  $matches = preg_match('/user|styles|definition|components|avatars/', $_SERVER['REQUEST_URI']);
+  return $matches ? '../' : './';
 }
 ?>

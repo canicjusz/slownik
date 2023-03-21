@@ -1,5 +1,5 @@
 <?php
-require_once('connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
 session_start();
 $keywords = $_GET["q"] ?? '';
 $user_id = $_SESSION['id'] ?? 0;
@@ -16,7 +16,7 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
   <link rel="stylesheet" href="results.css">
 </head>
 
-<?php require_once('components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <div class="main">
   <div>
@@ -88,12 +88,12 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
             <label for="" class="form__label">
               Fraza, słowo
               <input contenteditable="true" class="form__input" type="text" name="phrase" value="<?= $keywords ?>"
-                id="phrase" required placeholder="Fraza, słowo"></input>
+                id="phrase" require_onced placeholder="Fraza, słowo"></input>
             </label>
             <label for="" class="form__label">
               Objaśnienie
               <textarea contenteditable="true" class="form__textarea" name="description" id="description" cols="30"
-                rows="10" required placeholder="Objaśnienie"></textarea>
+                rows="10" require_onced placeholder="Objaśnienie"></textarea>
             </label>
             <label for="" class="form__label">
               Tagi
@@ -117,4 +117,4 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
   </p> -->
 </div>
 
-<?php require_once('components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

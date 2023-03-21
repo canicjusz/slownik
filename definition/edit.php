@@ -1,6 +1,6 @@
 <?php
-require_once('../helpers.php');
-require_once('../connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
 session_start();
 $query_id = $_GET["id"];
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
@@ -42,7 +42,7 @@ if (!empty($edited)) {
 }
 ?>
 
-<?php require_once('../components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <head>
   <link rel="stylesheet" href="edit.css">
@@ -53,12 +53,12 @@ if (!empty($edited)) {
     <label for="" class="form__label">
       Fraza, słowo
       <input contenteditable="true" class="form__input" type="text" name="phrase" value="<?= $definition->phrase ?>"
-        id="phrase" required placeholder="Fraza, słowo"></input>
+        id="phrase" require_onced placeholder="Fraza, słowo"></input>
     </label>
     <label for="" class="form__label">
       Objaśnienie
       <textarea contenteditable="true" class="form__textarea" name="description" id="description" cols="30" rows="10"
-        required placeholder="Objaśnienie"><?= $definition->description ?></textarea>
+        require_onced placeholder="Objaśnienie"><?= $definition->description ?></textarea>
     </label>
     <label for="" class="form__label">
       Tagi
@@ -69,4 +69,4 @@ if (!empty($edited)) {
   </form>
 </div>
 
-<?php require_once('../components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

@@ -1,6 +1,6 @@
 <?php
-require_once('../connect-db.php');
-require_once('../helpers.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
 session_start();
 $query_id = $_GET['id'];
 $user_id = $_SESSION['id'] ?? 0;
@@ -16,7 +16,7 @@ if (!$definition_result = $mysqli->execute_query($definition_query, [$user_id, $
   echo $mysqli->error;
 }
 
-if(!$definition_result->num_rows){
+if (!$definition_result->num_rows) {
   header("Location: ../404.php");
   exit;
 }
@@ -28,7 +28,7 @@ $definition = $definition_result->fetch_object();
   <link rel="stylesheet" href="../definition/index.css">
 </head>
 
-<?php require_once('../components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <div class="main">
   <div>
@@ -112,4 +112,4 @@ $definition = $definition_result->fetch_object();
   </div>
 </div>
 
-<?php require_once('../components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>

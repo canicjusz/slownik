@@ -1,6 +1,6 @@
 <?php
-require_once('../connect-db.php');
-require_once('../helpers.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
 session_start();
 $query = "SELECT id, name, avatar, description FROM user WHERE id = ?";
 
@@ -39,7 +39,7 @@ if ($result->num_rows == 1) {
   <link rel="stylesheet" href="edit.css">
 </head>
 
-<?php require_once('../components/nav.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
 
 <main class="main">
   <form action="" method="post" enctype="multipart/form-data" class="user">
@@ -53,7 +53,7 @@ if ($result->num_rows == 1) {
       <input class="user__avatar-input" type="file" id="avatar" name="avatar"
         accept="image/png, image/jpeg, image/jpg, image/gif">
     </div>
-    <input class="user__input" type="text" name="name" value="<?= $user->name ?>" required placeholder="Nazwa">
+    <input class="user__input" type="text" name="name" value="<?= $user->name ?>" require_onced placeholder="Nazwa">
     <textarea class="user__input" name="description" id="" cols="30" rows="10"
       placeholder="Opis"><?= $user->description ?></textarea>
     <button class="user__button">Zaakceptuj zmiany</button>
@@ -62,4 +62,4 @@ if ($result->num_rows == 1) {
 
 <script src="edit.js"></script>
 
-<?php require_once('../components/footer.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
