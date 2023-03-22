@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
+require_once(__DIR__ . '/../connect-db.php');
+require_once(__DIR__ . '/../helpers.php');
 session_start();
 $query = "SELECT id, name, avatar, description FROM user WHERE id = ?";
 
@@ -39,7 +39,7 @@ if ($result->num_rows == 1) {
   <link rel="stylesheet" href="edit.css">
 </head>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/../components/nav.php') ?>
 
 <main class="main">
   <form action="" method="post" enctype="multipart/form-data" class="user">
@@ -62,4 +62,4 @@ if ($result->num_rows == 1) {
 
 <script src="edit.js"></script>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/../components/footer.php') ?>

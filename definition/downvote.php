@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once(__DIR__ . '/../connect-db.php');
 session_start();
 $query_id = $_GET["id"];
 $user_id = $_SESSION['id'];

@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once(__DIR__ . '/connect-db.php');
 session_start();
 $keywords = $_GET["q"] ?? '';
 $user_id = $_SESSION['id'] ?? 0;
@@ -9,14 +9,14 @@ $definitions_query = "SELECT d.id, d.phrase, d.description_shortened, d.creation
 IF(0 < ?, (SELECT opinion FROM ratio WHERE definition_id=d.id AND user_id=?), '0') as opinion
 FROM definition as d JOIN user as u ON d.author_id = u.id WHERE MATCH(d.phrase,d.description,d.tags) AGAINST (? IN NATURAL LANGUAGE MODE) ORDER BY opinion DESC";
 
-$definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $user_id, $keywords]);
+$definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $user_id, $keywords, $keywords]);
 ?>
 
 <head>
   <link rel="stylesheet" href="results.css">
 </head>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/components/nav.php') ?>
 
 <div class="main">
   <div>
@@ -82,7 +82,7 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
           </div>
         <?php endwhile; ?>
       <?php endif; ?>
-      <?php if ($_SESSION['id']): ?>
+      <?php if (isset($_SESSION['id'])): ?>
         <div class="definition definition--right">
           <form action="add.php" method="post" class="definition__bubble form">
             <label for="" class="form__label">
@@ -117,4 +117,4 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
   </p> -->
 </div>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/components/footer.php') ?>

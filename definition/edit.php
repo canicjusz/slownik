@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once(__DIR__ . '/../helpers.php');
+require_once(__DIR__ . '/../connect-db.php');
 session_start();
 $query_id = $_GET["id"];
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
@@ -42,7 +42,7 @@ if (!empty($edited)) {
 }
 ?>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/../components/nav.php') ?>
 
 <head>
   <link rel="stylesheet" href="edit.css">
@@ -69,4 +69,4 @@ if (!empty($edited)) {
   </form>
 </div>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/../components/footer.php') ?>

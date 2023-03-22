@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="404.css">
 </head>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/components/nav.php') ?>
 
 <main class="main">
   <div>
@@ -12,4 +12,4 @@
   </div>
 </main>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/components/footer.php') ?>

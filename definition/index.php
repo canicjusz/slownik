@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
+require_once(__DIR__ . '/../connect-db.php');
+require_once(__DIR__ . '/../helpers.php');
 session_start();
 $query_id = $_GET['id'];
 $user_id = $_SESSION['id'] ?? 0;
@@ -28,7 +28,7 @@ $definition = $definition_result->fetch_object();
   <link rel="stylesheet" href="../definition/index.css">
 </head>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/../components/nav.php') ?>
 
 <div class="main">
   <div>
@@ -112,4 +112,4 @@ $definition = $definition_result->fetch_object();
   </div>
 </div>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/../components/footer.php') ?>

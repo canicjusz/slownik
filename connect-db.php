@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
+require_once(__DIR__ . '/helpers.php');
 
 $filename = commencing_path() . '.env';
 if (file_exists($filename)) {
@@ -12,12 +12,12 @@ class CustomSql extends mysqli
     parent::__construct($host, $user, $password, $database);
   }
 
-  public function execute_query($query, $parameters = [])
+  public function execute_query($query, ?array $params = null): mysqli_result|bool
   {
     $statement = $this->prepare($query);
-    $parameters_length = count($parameters);
-    if ($parameters_length) {
-      $statement->bind_param(str_repeat('s', $parameters_length), ...$parameters);
+    if ($params) {
+      $parameters_length = count($params);
+      $statement->bind_param(str_repeat('s', $parameters_length), ...$params);
     }
     $statement->execute();
     return $statement->get_result();

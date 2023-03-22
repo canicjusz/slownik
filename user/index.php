@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once(__DIR__ . '/../connect-db.php');
 session_start();
 
 $query = "SELECT id, name, avatar, creation_date, description FROM user WHERE id = ?";
@@ -20,7 +20,7 @@ $user = $result->fetch_object();
   <link rel="stylesheet" href="index.css">
 </head>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/../components/nav.php') ?>
 <!-- todo: dodac body tagi -->
 <!-- todo: errory -->
 <main class="main">
@@ -49,4 +49,4 @@ $user = $result->fetch_object();
   </div>
 </main>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/../components/footer.php') ?>

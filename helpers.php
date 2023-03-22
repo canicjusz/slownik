@@ -17,8 +17,8 @@ function addQuestionMarks($key)
 }
 function check_adminship()
 {
-  $user_id = $_SESSION["id"];
-  if (isset($user_id)) {
+  if (isset($_SESSION["id"])) {
+    $user_id = $_SESSION["id"];
     global $mysqli;
     $user_query = "SELECT is_admin FROM user WHERE id = ?";
     if (!$user_result = $mysqli->execute_query($user_query, [$user_id])) {

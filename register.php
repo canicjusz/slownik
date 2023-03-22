@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connect-db.php');
+require_once(__DIR__ . '/connect-db.php');
 session_start();
 
 if (isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
@@ -60,7 +60,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
   <link rel="stylesheet" href="login.css">
 </head>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/nav.php') ?>
+<?php require_once(__DIR__ . '/components/nav.php') ?>
 
 <main class="main">
   <form action="" method="post" class="form">
@@ -90,4 +90,4 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
   </div>
 </main>
 
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/components/footer.php') ?>
+<?php require_once(__DIR__ . '/components/footer.php') ?>

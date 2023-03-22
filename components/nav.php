@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/helpers.php');
+require_once(__DIR__ . '/../helpers.php');
 
 $hrefBeginning = commencing_path();
 ?>
