@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans&display=swap");
 .nav {
   position: relative;
   background: #635985;
@@ -89,6 +89,14 @@ html, body {
   margin: 0;
 }
 
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #A9A5B9;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #A9A5B9;
+}
+
 svg {
   fill: currentColor;
 }
@@ -110,14 +118,107 @@ svg {
   color: #fff;
 }
 
-.form {
-  margin: 20px 0 0 0;
+.results-section {
+  width: 600px;
+}
+.results-section__paragraph {
+  color: #18122B;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  font-family: "Noto Serif", serif;
+}
+
+.definition {
+  max-width: 450px;
+  grid-template-columns: 40px 410px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "avatar nick" "avatar bubble" ". date";
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  display: grid;
+  margin: 15px 0;
+  font-family: "Open Sans", sans-serif;
+}
+.definition__bubble {
+  width: 100%;
+  grid-area: bubble;
   border-radius: 10px;
-  height: -moz-fit-content;
-  height: fit-content;
+  border-top-left-radius: 0;
   background: #635985;
   box-sizing: border-box;
   padding: 10px 15px;
+}
+.definition__title {
+  margin: 0;
+  font-family: "Noto Serif", serif;
+  font-size: 2rem;
+}
+.definition__avatar {
+  border: 2px solid #393053;
+  border-radius: 50%;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.definition__avatar-container {
+  height: -moz-fit-content;
+  height: fit-content;
+  grid-area: avatar;
+}
+.definition__date {
+  grid-area: date;
+  color: #b0b0b0;
+}
+.definition__name {
+  color: #fff;
+  grid-area: nick;
+  text-decoration-color: transparent;
+  font-size: 1.2rem;
+}
+.definition__name:hover {
+  text-decoration-color: #fff;
+}
+.definition__avatar-container:hover + .definition__name {
+  text-decoration: underline;
+}
+.definition__description {
+  color: #18122B;
+  margin: 10px 0;
+  font-family: "Noto Serif", serif;
+}
+.definition__thumb {
+  text-decoration: none;
+}
+.definition__opinion {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+}
+.definition__ratio {
+  color: #fff;
+}
+
+.definition--right.definition {
+  margin-left: auto;
+  margin-right: 0;
+  grid-template-columns: 410px 40px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "nick avatar" "bubble avatar";
+}
+.definition--right.definition .definition__bubble {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0;
+}
+.definition--right.definition .definition__name {
+  text-decoration: none;
+  text-align: right;
+}
+
+.form {
+  margin: 0;
 }
 .form__input, .form__textarea {
   box-sizing: border-box;
@@ -139,6 +240,9 @@ svg {
   font-size: 1.2rem;
   max-height: 200px;
 }
+.form__input:focus, .form__textarea:focus {
+  outline: 1px solid #fff;
+}
 .form__button {
   color: #fff;
   cursor: pointer;
@@ -153,8 +257,11 @@ svg {
   border: none;
   border-radius: 50px;
 }
+.form__button:focus {
+  outline: 1px solid #fff;
+}
 .form__label {
   font-size: 1.2rem;
   font-family: "Open Sans", sans-serif;
   color: #18122B;
-}/*# sourceMappingURL=edit.css.map */
+}/*# sourceMappingURL=index.css.map */

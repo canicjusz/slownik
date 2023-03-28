@@ -17,7 +17,7 @@ $user = $result->fetch_object();
 ?>
 
 <head>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="../styles/pages/user/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/../components/nav.php') ?>
@@ -31,7 +31,7 @@ $user = $result->fetch_object();
     <h2 class="user__name">
       <?= $user->name ?>
       <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $user->id): ?>
-        <a href="edit.php">
+        <a href="../user/edit.php">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
             <path fill="none" d="M0 0h24v24H0z" />
             <path

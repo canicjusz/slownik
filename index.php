@@ -31,7 +31,7 @@ if (!$best_definitions_result = $mysqli->execute_query($best_definitions_query))
 ?>
 
 <head>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="./styles/pages/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/components/nav.php') ?>
@@ -44,24 +44,30 @@ if (!$best_definitions_result = $mysqli->execute_query($best_definitions_query))
     </h1>
     <section class="random-section">
       <h2 class="random-section__title">Randomowa definicja:</h2>
-      <div class="random-section__content definition">
-        <div class="definition__bubble">
-          <h3 class="definition__title"><a href="definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
-          </h3>
-          <p class="definition__description">
-            <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
-          </p>
+      <?php if ($definition_result->num_rows): ?>
+        <div class="random-section__content definition">
+          <div class="definition__bubble">
+            <h3 class="definition__title"><a href="definition?id=<?= $definition->id ?>"><?= $definition->phrase ?></a>
+            </h3>
+            <p class="definition__description">
+              <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="/definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
+            </p>
+          </div>
+          <a class="definition__avatar-container" href="user/index.php?id=<?= $definition->author_id ?>">
+            <img class="definition__avatar" src="avatars/<?= $definition->avatar ?>" alt="">
+          </a>
+          <a class="definition__name" href="user/index.php?id=<?= $definition->author_id ?>">
+            <?= $definition->name ?>
+          </a>
+          <small class="definition__date">
+            <?= $definition->last_edit_date ? $definition->creation_date . ', ostatnia zmiana: ' . $definition->last_edit_date : $definition->creation_date ?>
+          </small>
         </div>
-        <a class="definition__avatar-container" href="user/index.php?id=<?= $definition->author_id ?>">
-          <img class="definition__avatar" src="avatars/<?= $definition->avatar ?>" alt="">
-        </a>
-        <a class="definition__name" href="user/index.php?id=<?= $definition->author_id ?>">
-          <?= $definition->name ?>
-        </a>
-        <small class="definition__date">
-          <?= $definition->last_edit_date ? $definition->creation_date . ', ostatnia zmiana: ' . $definition->last_edit_date : $definition->creation_date ?>
-        </small>
-      </div>
+      <?php else: ?>
+        <p class="random-section__paragraph">Brak definicji, pomóż rozwinąć słownik <a href="definition/add.php">tworząc
+            <b>pierwszą</b> definicję.</a>
+        </p>
+      <?php endif; ?>
     </section>
   </div>
   <!-- todo: ikonki -->

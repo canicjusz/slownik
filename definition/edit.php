@@ -45,7 +45,7 @@ if (!empty($edited)) {
 <?php require_once(__DIR__ . '/../components/nav.php') ?>
 
 <head>
-  <link rel="stylesheet" href="edit.css">
+  <link rel="stylesheet" href="../styles/pages/definition/edit/index.css">
 </head>
 
 <div class="main">
@@ -53,16 +53,16 @@ if (!empty($edited)) {
     <label for="" class="form__label">
       Fraza, słowo
       <input contenteditable="true" class="form__input" type="text" name="phrase" value="<?= $definition->phrase ?>"
-        id="phrase" require_onced placeholder="Fraza, słowo"></input>
+        id="phrase" required placeholder="Fraza, słowo"></input>
     </label>
     <label for="" class="form__label">
       Objaśnienie
       <textarea contenteditable="true" class="form__textarea" name="description" id="description" cols="30" rows="10"
-        require_onced placeholder="Objaśnienie"><?= $definition->description ?></textarea>
+        required placeholder="Objaśnienie"><?= $definition->description ?></textarea>
     </label>
     <label for="" class="form__label">
       Tagi
-      <textarea contenteditable="true" class="form__textarea" name="tags" id="tags" req
+      <textarea contenteditable="true" class="form__textarea" name="tags" id="tags"
         placeholder="Oddzielaj je przecinkiem: tag1,tag2"><?= $definition->tags ?></textarea>
     </label>
     <button class="form__button">Zatwierdź modyfikacje</button>

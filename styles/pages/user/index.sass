@@ -1,8 +1,8 @@
-@use '../styles/variables' as *
-@use '../styles/fonts'
-@use '../styles/nav'
-@use '../styles/footer'
-@use '../styles/default'
+@use '../../variables' as *
+@use '../../fonts'
+@use '../../nav'
+@use '../../footer'
+@use '../../default'
 
 .main
   display: flex
@@ -29,14 +29,13 @@
   border-radius: 10px
   width: 600px
   color: $haiti
-  // dodac to we wszystkich chmurkach
-  box-shadow: 0 0  2px #574e74
 
   &__avatar
     border-radius: 50%
     height: 250px
     width: 250px
     object-fit: cover
+    border: 2px solid $indigo
 
     &-container
       text-align: center

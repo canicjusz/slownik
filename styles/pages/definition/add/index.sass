@@ -1,8 +1,8 @@
-@use '../styles/variables' as *
-@use '../styles/fonts'
-@use '../styles/nav'
-@use '../styles/footer'
-@use '../styles/default'
+@use '../../../variables' as *
+@use '../../../fonts'
+@use '../../../nav'
+@use '../../../footer'
+@use '../../../default'
 
 .main
   display: flex
@@ -47,6 +47,9 @@
     font-size: 1.2rem
     max-height: 200px
 
+    &:focus
+      outline: 1px solid $white
+
   &__button
     color: $white
     cursor: pointer
@@ -60,6 +63,9 @@
     background: $indigo
     border: none
     border-radius: 50px
+
+    &:focus
+      outline: 1px solid $white
 
   &__label
     font-size: 1.2rem

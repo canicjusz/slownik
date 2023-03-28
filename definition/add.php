@@ -13,7 +13,6 @@ if (isset($_POST['phrase'], $_POST['description'], $_POST['tags'])) {
   $new_description_shortened = substr($new_description, 0, 150);
   $user_id = $_SESSION['id'];
   $query = "INSERT INTO definition (phrase, tags, description, description_shortened, author_id) VALUES (?, ?, ?, ?, ?)";
-  echo $query . $_SESSION['id'];
   if ($mysqli->execute_query($query, [$new_phrase, $new_tags, $new_description, $new_description_shortened, $user_id])) {
     header("Location: index.php?id=$mysqli->insert_id");
     exit;
@@ -23,7 +22,7 @@ if (isset($_POST['phrase'], $_POST['description'], $_POST['tags'])) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="../definition/add.css">
+  <link rel="stylesheet" href="../styles/pages/definition/add/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/../components/nav.php') ?>
@@ -32,12 +31,12 @@ if (isset($_POST['phrase'], $_POST['description'], $_POST['tags'])) {
   <form action="" method="post" class="form">
     <label for="phrase" class="form__label">
       Fraza, słowo:
-      <input type="text" name="phrase" value="<?= $_GET['phrase'] ?? '' ?>" id="phrase" require_onced
+      <input type="text" name="phrase" value="<?= $_GET['phrase'] ?? '' ?>" id="phrase" required
         placeholder="przykładowa nazwa" class="form__input">
     </label>
     <label for="description" class="form__label">
       Objaśnienie:
-      <textarea name="description" id="description" cols="30" rows="10" require_onced placeholder="ciekawy opis"
+      <textarea name="description" id="description" cols="30" rows="10" required placeholder="ciekawy opis"
         class="form__textarea"></textarea>
     </label>
     <label for="tags" class="form__label">

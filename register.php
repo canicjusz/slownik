@@ -57,7 +57,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="./styles/pages/register/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/components/nav.php') ?>
@@ -66,15 +66,15 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
   <form action="" method="post" class="form">
     <label for="name" class="form__label">
       Nick:
-      <input type="text" name="name" id="name" class="form__input" require_onced>
+      <input type="text" name="name" id="name" class="form__input" required>
     </label>
     <label for="email" class="form__label">
       Email:
-      <input type="email" name="email" id="email" class="form__input" require_onced>
+      <input type="email" name="email" id="email" class="form__input" required>
     </label>
     <label for="password" class="form__label">
       Hasło:
-      <input type="password" name="password" id="password" class="form__input" require_onced>
+      <input type="password" name="password" id="password" class="form__input" required>
     </label>
     <button class="form__button">
       Zarejestruj się

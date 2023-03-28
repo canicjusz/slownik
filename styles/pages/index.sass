@@ -1,9 +1,10 @@
-@use 'styles/variables' as *
-@use 'styles/fonts'
-@use 'styles/nav'
-@use 'styles/footer'
-@use 'styles/default'
-      
+@use '../variables' as *
+@use '../fonts'
+@use '../nav'
+@use '../footer'
+@use '../default'
+  
+
 .main
   display: flex
   justify-content: center
@@ -31,6 +32,13 @@
 
   &__content-container
     width: 500px
+
+  &__paragraph
+    color: $haiti
+    font-size: 1.2rem
+    margin: 10px 0
+    font-family: 'Noto Serif', serif
+  
 
 .definition
   max-width: 450px

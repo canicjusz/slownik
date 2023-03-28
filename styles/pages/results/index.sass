@@ -1,8 +1,8 @@
-@use 'styles/variables' as *
-@use 'styles/fonts'
-@use 'styles/nav'
-@use 'styles/footer'
-@use 'styles/default'
+@use '../../variables' as *
+@use '../../fonts'
+@use '../../nav'
+@use '../../footer'
+@use '../../default'
 
 .main
   display: flex
@@ -22,7 +22,12 @@
 
 .results-section
   width: 600px
-
+  
+  &__paragraph
+    color: $haiti
+    font-size: 1.2rem
+    margin: 10px 0
+    font-family: 'Noto Serif', serif
 
 .definition
   max-width: 450px
@@ -49,6 +54,7 @@
     font-size: 2rem
 
   &__avatar
+    border: 2px solid $indigo
     border-radius: 50%
     top: 0
     height: 40px
@@ -130,6 +136,9 @@
     font-size: 1.2rem
     max-height: 200px
 
+    &:focus
+      outline: 1px solid $white
+
   &__button
     color: $white
     cursor: pointer
@@ -143,6 +152,9 @@
     background: $indigo
     border: none
     border-radius: 50px
+
+    &:focus
+      outline: 1px solid $white
 
   &__label
     font-size: 1.2rem

@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/helpers.php');
 
-$filename = commencing_path() . '.env';
+$filename = __DIR__ . '/.env';
 if (file_exists($filename)) {
   $env = parse_ini_file($filename);
 }
@@ -20,7 +20,13 @@ class CustomSql extends mysqli
       $statement->bind_param(str_repeat('s', $parameters_length), ...$params);
     }
     $statement->execute();
-    return $statement->get_result();
+    if ($statement->insert_id) {
+      return $statement->insert_id;
+    } else if ($result = $statement->get_result()) {
+      return $result;
+    } else {
+      return !$statement->errno;
+    }
   }
 }
 

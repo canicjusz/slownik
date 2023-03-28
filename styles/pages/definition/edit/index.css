@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans&display=swap");
 .nav {
   position: relative;
   background: #635985;
@@ -89,6 +89,14 @@ html, body {
   margin: 0;
 }
 
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #A9A5B9;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #A9A5B9;
+}
+
 svg {
   fill: currentColor;
 }
@@ -110,38 +118,57 @@ svg {
   color: #fff;
 }
 
-.user {
-  margin: 20px 0;
+.form {
+  margin: 20px 0 0 0;
+  border-radius: 10px;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 10px;
   background: #635985;
+  box-sizing: border-box;
+  padding: 10px 15px;
+}
+.form__input, .form__textarea {
+  box-sizing: border-box;
+  margin: 5px 0 10px 0;
+  padding: 10px;
   border-radius: 10px;
-  width: 600px;
-  color: #18122B;
-  box-shadow: 0 0 2px #574e74;
+  background: #443C68;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  height: -moz-fit-content;
+  height: fit-content;
+  resize: none;
+  overflow-wrap: break-word;
+  color: #fff;
+  cursor: text;
+  font-size: 1.2rem;
+  max-height: 200px;
 }
-.user__avatar {
-  border-radius: 50%;
-  height: 250px;
-  width: 250px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.form__input:focus, .form__textarea:focus {
+  outline: 1px solid #fff;
 }
-.user__avatar-container {
-  text-align: center;
+.form__button {
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: "Open Sans", sans-serif;
+  padding: 10px 15px;
+  margin-right: 0;
+  display: block;
+  margin-left: auto;
+  height: 50px;
+  background: #393053;
+  border: none;
+  border-radius: 50px;
 }
-.user__name {
-  margin: 10px 0;
-  text-align: center;
+.form__button:focus {
+  outline: 1px solid #fff;
+}
+.form__label {
+  font-size: 1.2rem;
   font-family: "Open Sans", sans-serif;
   color: #18122B;
-  font-size: 2rem;
-}
-.user__date {
-  font-family: "Open Sans", sans-serif;
-}
-.user__description {
-  font-family: "Open Sans", sans-serif;
-  margin: 10px 0;
 }/*# sourceMappingURL=index.css.map */

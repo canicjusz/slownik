@@ -1,12 +1,13 @@
-@use '../styles/variables' as *
-@use '../styles/fonts'
-@use '../styles/nav'
-@use '../styles/footer'
-@use '../styles/default'
+@use '../../variables' as *
+@use '../../fonts'
+@use '../../nav'
+@use '../../footer'
+@use '../../default'
 
 .main
   display: flex
-  justify-content: center
+  align-items: center
+  flex-direction: column
   position: relative
   min-height: calc(100vh - 111px)
   background: $minsk
@@ -28,7 +29,7 @@
   box-sizing: border-box
   padding: 10px 15px
 
-  &__input, &__textarea
+  &__input
     box-sizing: border-box
     margin: 5px 0 10px 0
     padding: 10px
@@ -47,6 +48,9 @@
     font-size: 1.2rem
     max-height: 200px
 
+    &:focus
+      outline: 1px solid $white
+
   &__button
     color: $white
     cursor: pointer
@@ -61,7 +65,21 @@
     border: none
     border-radius: 50px
 
+    &:focus
+      outline: 1px solid $white
+
   &__label
     font-size: 1.2rem
     font-family: 'Open Sans', sans-serif
     color: $haiti
+
+.error
+  margin: 20px 0 0 0
+  border-radius: 10px
+  height: fit-content
+  box-sizing: border-box
+  padding: 10px 15px
+  background: $red
+  display: block
+  font-size: 1rem
+  font-family: 'Open Sans', sans-serif

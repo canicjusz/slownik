@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans&display=swap");
 .nav {
   position: relative;
   background: #635985;
@@ -89,6 +89,14 @@ html, body {
   margin: 0;
 }
 
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #A9A5B9;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #A9A5B9;
+}
+
 svg {
   fill: currentColor;
 }
@@ -101,17 +109,30 @@ svg {
   background: #443C68;
 }
 .main__title {
-  color: #18122B;
   font-family: "Noto Serif", serif;
-  font-size: 2.4rem;
-  margin: 10px 0 20px 0;
+  margin: 0;
+  color: #18122B;
+  font-size: 3rem;
+  padding: 20px;
 }
 .main a {
   color: #fff;
 }
 
-.results-section {
-  width: 600px;
+.random-section__title {
+  color: #18122B;
+  font-family: "Noto Serif", serif;
+  font-size: 2.4rem;
+  margin: 10px 0 20px 0;
+}
+.random-section__content-container {
+  width: 500px;
+}
+.random-section__paragraph {
+  color: #18122B;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  font-family: "Noto Serif", serif;
 }
 
 .definition {
@@ -173,33 +194,42 @@ svg {
   margin: 10px 0;
   font-family: "Noto Serif", serif;
 }
-.definition__thumb {
-  text-decoration: none;
-}
-.definition__opinion {
+
+.definition-lists {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
   display: flex;
-  align-items: center;
-  -moz-column-gap: 5px;
-       column-gap: 5px;
-}
-.definition__ratio {
-  color: #fff;
+  justify-content: center;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
 }
 
-.definition--right.definition {
-  margin-left: auto;
-  margin-right: 0;
-  grid-template-columns: 410px 40px;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: "nick avatar" "bubble avatar";
+.new-definition, .edited-definition, .best-definition {
+  margin: 5px 0;
 }
-.definition--right.definition .definition__bubble {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 0;
+.new-definition__container, .edited-definition__container, .best-definition__container {
+  background: #635985;
+  border-radius: 10px;
+  padding: 15px;
 }
-.definition--right.definition .definition__name {
-  text-decoration: none;
-  text-align: right;
+.new-definition__title, .edited-definition__title, .best-definition__title {
+  font-family: "Noto Serif", serif;
+  font-size: 2.4rem;
+  color: #18122B;
+  margin: 0;
+}
+.new-definition__list, .edited-definition__list, .best-definition__list {
+  font-family: "Open Sans", sans-serif;
+  list-style-position: inside;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+.new-definition__link, .edited-definition__link, .best-definition__link {
+  display: inline-block;
+}
+.new-definition__date, .edited-definition__date, .best-definition__date {
+  color: #18122B;
 }
 
 .form {
@@ -243,4 +273,4 @@ svg {
   font-size: 1.2rem;
   font-family: "Open Sans", sans-serif;
   color: #18122B;
-}/*# sourceMappingURL=results.css.map */
+}/*# sourceMappingURL=index.css.map */

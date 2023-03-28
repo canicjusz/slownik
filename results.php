@@ -9,11 +9,11 @@ $definitions_query = "SELECT d.id, d.phrase, d.description_shortened, d.creation
 IF(0 < ?, (SELECT opinion FROM ratio WHERE definition_id=d.id AND user_id=?), '0') as opinion
 FROM definition as d JOIN user as u ON d.author_id = u.id WHERE MATCH(d.phrase,d.description,d.tags) AGAINST (? IN NATURAL LANGUAGE MODE) ORDER BY opinion DESC";
 
-$definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $user_id, $keywords, $keywords]);
+$definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $user_id, $keywords]);
 ?>
 
 <head>
-  <link rel="stylesheet" href="results.css">
+  <link rel="stylesheet" href="./styles/pages/results/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/components/nav.php') ?>
@@ -23,7 +23,9 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
     <h1 class="main__title">Wyniki wyszukiwania:</h1>
     <div class="results-section">
       <?php if ($definitions_result->num_rows == 0): ?>
-        brak wyników
+        <p class="results-section__paragraph">Brak wyników. Pomóż nam rozwijać stronę i dodaj własną definicję.
+          <?= isset($_SESSION['id']) ? '' : "Możesz to zrobić po <a href='./login.php'>zalogowaniu się</a>." ?>
+        </p>
       <?php else: ?>
         <?php while ($definition = $definitions_result->fetch_object()): ?>
           <div class="definition">
@@ -35,7 +37,7 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
                 <?= strlen($definition->description_shortened) < 150 ? $definition->description_shortened : $definition->description_shortened . '... <a href="definition?id=' . $definition->id . '">zobacz więcej</a>' ?>
               </p>
               <div class="definition__opinion">
-                <a href="definition/upvote.php?id=<?= $definition->id ?>" class="definition__thumb">
+                <a href="./definition/upvote.php?id=<?= $definition->id ?>" class="definition__thumb">
                   <?php if ($definition->opinion == 1): ?>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                       <path fill="none" d="M0 0h24v24H0z" />
@@ -53,7 +55,7 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
                 <span class="definition__ratio" ratio="<?= $definition->ratio ?>">
                   <?= $definition->ratio ?>
                 </span>
-                <a href="definition/downvote.php?id=<?= $definition->id ?>" class="definition__thumb">
+                <a href="./definition/downvote.php?id=<?= $definition->id ?>" class="definition__thumb">
                   <?php if ($definition->opinion == -1): ?>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                       <path fill="none" d="M0 0h24v24H0z" />
@@ -84,20 +86,20 @@ $definitions_result = $mysqli->execute_query($definitions_query, [$user_id, $use
       <?php endif; ?>
       <?php if (isset($_SESSION['id'])): ?>
         <div class="definition definition--right">
-          <form action="add.php" method="post" class="definition__bubble form">
+          <form action="./definition/add.php" method="post" class="definition__bubble form">
             <label for="" class="form__label">
               Fraza, słowo
               <input contenteditable="true" class="form__input" type="text" name="phrase" value="<?= $keywords ?>"
-                id="phrase" require_onced placeholder="Fraza, słowo"></input>
+                id="phrase" required placeholder="Fraza, słowo"></input>
             </label>
             <label for="" class="form__label">
               Objaśnienie
               <textarea contenteditable="true" class="form__textarea" name="description" id="description" cols="30"
-                rows="10" require_onced placeholder="Objaśnienie"></textarea>
+                rows="10" required placeholder="Objaśnienie"></textarea>
             </label>
             <label for="" class="form__label">
               Tagi
-              <textarea contenteditable="true" class="form__textarea" name="tags" id="tags" req
+              <textarea contenteditable="true" class="form__textarea" name="tags" id="tags"
                 placeholder="Oddzielaj je przecinkiem: tag1,tag2"></textarea>
             </label>
             <button class="form__button">Dodaj własną definicję!</button>

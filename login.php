@@ -34,7 +34,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
   $user = $result->fetch_object();
 
-  if ($result->num_rows == 1 && password_verify($password, $user->password)) {
+  if ($result->num_rows && password_verify($password, $user->password)) {
     $_SESSION['id'] = $user->id;
     $_SESSION['name'] = $user->name;
     $_SESSION['avatar'] = $user->avatar;
@@ -50,7 +50,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="./styles/pages/login/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/components/nav.php') ?>
@@ -59,11 +59,11 @@ if (isset($_POST['email'], $_POST['password'])) {
   <form action="" method="post" class="form">
     <label for="email" class="form__label">
       Email:
-      <input type="email" name="email" id="email" class="form__input" require_onced>
+      <input type="email" name="email" id="email" class="form__input" required>
     </label>
     <label for="password" class="form__label">
       Hasło:
-      <input type="password" name="password" id="password" class="form__input" require_onced>
+      <input type="password" name="password" id="password" class="form__input" required>
     </label>
     <button class="form__button">
       Zaloguj się

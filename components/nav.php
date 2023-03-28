@@ -8,7 +8,7 @@ $hrefBeginning = commencing_path();
     <img src="<?= $hrefBeginning ?>logo.png" alt="logo" class="nav__logo">
   </a>
   <form action="<?= $hrefBeginning ?>results.php" method="get" class="nav__form search">
-    <input type="search" id="search-input" name="q" require_onced class="search__input" placeholder="Wyszukiwarka">
+    <input type="search" id="search-input" name="q" required class="search__input" placeholder="Wyszukiwarka">
     <button class="search__button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
         <path fill="none" d="M0 0h24v24H0z"></path>

@@ -4,10 +4,16 @@ require_once(__DIR__ . '/../helpers.php');
 session_start();
 $query = "SELECT id, name, avatar, description FROM user WHERE id = ?";
 
+session_start();
+if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
+  header('Location: ../login.php');
+  exit;
+}
+
 if (!$result = $mysqli->execute_query($query, [$_SESSION['id']])) {
   echo $mysqli->error;
 }
-if ($result->num_rows == 1) {
+if ($result->num_rows) {
   $user = $result->fetch_object();
 
   if (isset($_POST["avatar"]) || isset($_POST["description"]) || isset($_POST["name"])) {
@@ -36,7 +42,7 @@ if ($result->num_rows == 1) {
 ?>
 
 <head>
-  <link rel="stylesheet" href="edit.css">
+  <link rel="stylesheet" href="../styles/pages/user/edit/index.css">
 </head>
 
 <?php require_once(__DIR__ . '/../components/nav.php') ?>
@@ -53,7 +59,7 @@ if ($result->num_rows == 1) {
       <input class="user__avatar-input" type="file" id="avatar" name="avatar"
         accept="image/png, image/jpeg, image/jpg, image/gif">
     </div>
-    <input class="user__input" type="text" name="name" value="<?= $user->name ?>" require_onced placeholder="Nazwa">
+    <input class="user__input" type="text" name="name" value="<?= $user->name ?>" required placeholder="Nazwa">
     <textarea class="user__input" name="description" id="" cols="30" rows="10"
       placeholder="Opis"><?= $user->description ?></textarea>
     <button class="user__button">Zaakceptuj zmiany</button>
