@@ -161,6 +161,7 @@ svg {
   font-size: 2rem;
 }
 .definition__avatar {
+  border: 2px solid #393053;
   border-radius: 50%;
   top: 0;
   height: 40px;

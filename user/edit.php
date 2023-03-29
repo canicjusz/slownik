@@ -4,7 +4,6 @@ require_once(__DIR__ . '/../helpers.php');
 session_start();
 $query = "SELECT id, name, avatar, description FROM user WHERE id = ?";
 
-session_start();
 if (!isset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'])) {
   header('Location: ../login.php');
   exit;
